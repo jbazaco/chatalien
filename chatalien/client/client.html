@@ -1,0 +1,28 @@
+<head>
+	<title> Chat Alien </title>
+</head>
+
+<body>
+	<h1> Chat Alien </h1>
+	{{loginButtons align="right"}}<br>
+	{{> welcome}}
+	{{> input}}
+	{{> messages}}
+</body>
+
+
+<template name="welcome">
+	<p>
+		Welcome To Chat Alien! Please, log in to show your username
+	</p>
+</template>
+
+<template name="messages">
+	{{#each messages}}
+		<strong>{{name}}:</strong> {{message}}<br>
+	{{/each}}
+</template>
+
+<template name="input">
+	<p>Message: <input type='text' id="message"></p>
+</template>
