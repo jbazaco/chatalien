@@ -5,7 +5,7 @@ Template.messages.messages = function() {
 Template.input.events = {
 	'keydown input#message': function(event) {
 
-		if (Meteor.user()) { /*COMO PONERLO FUERA?*/
+		if (Meteor.user()) { /*COMO PONERLO FUERA Y QUE SE ACTUALICE?*/
 			var name = Meteor.user().emails[0].address;
 		} else {
 			var name = 'Anonymous';
