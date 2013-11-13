@@ -13,7 +13,7 @@
 
 // Objeto singleton Game: se guarda una unica instancia del
 // constructor anónimo en el objeto Game
-var Game = new function() {                                                                  
+Game = new function() {                                                                  
 	var boards = [];
 	
     // Inicializa el juego
@@ -59,13 +59,24 @@ var Game = new function() {
     var KEY_CODES = { 37:'left', 39:'right', 32 :'fire',66:'fireballb', 78: 'fireballn' };
     this.keys = {};
 
+    var selected = true;
     this.setupInput = function() {
+	
 	$(window).keydown(function(event){
-	    if (KEY_CODES[event.which]) {
+	    if (KEY_CODES[event.which] && selected) {
 		Game.keys[KEY_CODES[event.which]] = true;
-		return false;
+			return !selected;
 	    }
 	});
+
+	$('#game').click(function(event) {
+            selected = true;
+	    return false;
+    	});
+
+	$(window).click(function(event) {
+            selected = false;
+    	});
 	
 	$(window).keyup(function(event){
 	    if (KEY_CODES[event.which]) {
@@ -165,7 +176,7 @@ var Game = new function() {
 
 // Objeto singleton SpriteSheet: se guarda una unica instancia del
 // constructor anónimo en el objeto SpriteSheet
-var SpriteSheet = new function() {
+SpriteSheet = new function() {
 
     // Almacena nombre_de_sprite: rectángulo para que sea mas facil
     // gestionar los sprites del fichero images/sprite.png
@@ -210,7 +221,7 @@ var SpriteSheet = new function() {
 // rel='stylesheet' type='text/css'> Otros fonts:
 // http://www.google.com/fonts
 
-var TitleScreen = function TitleScreen(title,subtitle,callback) {
+TitleScreen = function TitleScreen(title,subtitle,callback) {
     var up = false;
 
     // En cada paso, comprobamos si la tecla ha pasado de no pulsada a
@@ -242,7 +253,7 @@ var TitleScreen = function TitleScreen(title,subtitle,callback) {
 // La clase GameBoard ofrece la interfaz step(), draw() para que sus
 // elementos puedan ser mostrados desde el bucle principal del juego.
 
-var GameBoard = function() {
+GameBoard = function() {
     var board = this;
 
     // Colección de objetos contenidos por este tablero
@@ -387,7 +398,7 @@ Sprite.prototype.hit = function(damage) {
 // Al constructor del nivel se le pasan los datos que definen el nivel
 //   (p.ej. level1 en game.js) y una función a la que llamar si el
 //   jugador gana (winGame en game.js).
-var Level = function(levelData,callback) {
+Level = function(levelData,callback) {
     // Recuerda el formato de cada batería de enemigos definida en levelData
     //  Comienzo, Fin,   Frecuencia,  Tipo,       Override
     //  [ 0,       4000,  500,         'step',     { x: 100 } ]
@@ -662,7 +673,7 @@ var TouchControls = function() {
     Game.playerOffset = unitWidth + 20;
 };
 
-var GamePoints = function() {
+GamePoints = function() {
   Game.points = 0;
 
   var pointsLength = 8;

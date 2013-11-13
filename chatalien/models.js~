@@ -1,2 +1,0 @@
-Messages = Meteor.Collection('messages');
-

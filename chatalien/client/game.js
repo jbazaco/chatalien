@@ -10,7 +10,7 @@ var sprites = {
     enemy_missile: { sx: 9, sy: 42, w: 3, h: 20, frame: 1 }
 };
 
-var enemies = {
+enemies = {
 
     // straight sólo tiene el parámetro E para la velocidad vertical,
     // por lo que se mueve hacia abajo a velocidad constante.
@@ -39,13 +39,13 @@ var enemies = {
 };
 
 
-var OBJECT_PLAYER            =  1,
-    OBJECT_PLAYER_PROJECTILE =  2,
-    OBJECT_ENEMY             =  4,
-    OBJECT_ENEMY_PROJECTILE  =  8,
+    OBJECT_PLAYER            =  1;
+    OBJECT_PLAYER_PROJECTILE =  2;
+    OBJECT_ENEMY             =  4;
+    OBJECT_ENEMY_PROJECTILE  =  8;
     OBJECT_POWERUP           = 16;
 
-var startGame = function() {
+startGame = function() {
     Game.setBoard(0,new Starfield(20,0.4,100,true));
     Game.setBoard(1,new Starfield(50,0.6,100));
     Game.setBoard(2,new Starfield(100,1.0,50));
@@ -391,7 +391,7 @@ PlayerFireball.prototype.step = function(dt)  {
 // baseParameters. Ver cómo se añaden 2 enemigos en la función
 // playGame() de este fichero.
 
-var Enemy = function(blueprint,override) {
+Enemy = function(blueprint,override) {
     // Cada instancia tendrá las propiedades definidas en baseParameters
     this.merge(this.baseParameters);
 
